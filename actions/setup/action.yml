@@ -1,1 +1,40 @@
-#placeholder action file
+name: 'Setup jfrog cli for Artifactory'
+description: 'Download and configure JFrog CLI'
+#inputs:
+#  who-to-greet:  # id of input
+#    description: 'Who to greet'
+#    required: true
+#    default: 'World'
+#outputs:
+#  random-number:
+#    description: "Random number"
+#    value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+   - name: Setup JFrog CLI
+     uses: jfrog/setup-jfrog-cli@v1
+     
+   - id: ConfigureCli
+     name: Configure Jfrog Cli
+     shell: bash
+     run: |
+        # Display Current JFrog Version
+        jfrogversion=$(jfrog -v)
+        IFS=' ' read -ra my_array <<< "$jfrogversion"
+        echo "Using JFrog Version ${my_array[2]}"
+        
+        echo "USER ${{ env.ARTIFACTORY_USERNAME }}"
+        echo "PW ${{ env.ARTIFACTORY_PASSWORD }}"
+        echo "URL ${{ env.ARTIFACTORY_URL }}"
+        
+        
+        # Configure JFrog Server
+      
+    #- run: echo Hello ${{ inputs.who-to-greet }}.
+    #  shell: bash
+    #- id: random-number-generator
+    #  run: echo "::set-output name=random-id::$(echo $RANDOM)"
+    #  shell: bash
+    #- run: ${{ github.action_path }}/goodbye.sh
+    #  shell: bash
