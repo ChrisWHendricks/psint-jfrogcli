@@ -27,9 +27,8 @@ runs:
      shell: bash
      run: |
       if [ -n "${{ inputs.url }}" ]; then
-        echo "URL Provided"
-      else
-        echo "URL Not Provided"
+        echo "URL Provided, setting ARTIFACTORY_URL Environment Variable"
+        echo "ARTIFACTORY_URL=${{ inputs.url }}" >> $GITHUB_ENV;     
       fi
      
    - id: ConfigureCli
@@ -41,9 +40,7 @@ runs:
         IFS=' ' read -ra my_array <<< "$jfrogversion"
         echo "Using JFrog Version ${my_array[2]}"
         
-        echo "USER ${{ inputs.user }}"
-        echo "PW ${{ inputs.password }}"
-        echo "URL ${{ inputs.url }}"
+       
         
         # Configure JFrog Server
         jfrog config add --artifactory-url=${{ inputs.url }} --user=${{inputs.user }} --password=${{ inputs.password}}
