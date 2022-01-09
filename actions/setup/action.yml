@@ -4,15 +4,15 @@ inputs:
   url: 
     description: 'url for artifactory instance'
     required: true
-    default: ${{ env.ARTIFACTORY_URL }}
+    default: '${{ env.ARTIFACTORY_URL }}'
    user: 
     description: 'url for artifactory instance'
     required: true
-    default: ${{ env.ARTIFACTORY_USERNAME }}
+    default: '${{ env.ARTIFACTORY_USERNAME }}'
    password: 
     description: 'url for artifactory instance'
     required: true
-    default: ${{ env.ARTIFACTORY_PASSWORD }}
+    default: '${{ env.ARTIFACTORY_PASSWORD }}'
 #outputs:
 #  random-number:
 #    description: "Random number"
