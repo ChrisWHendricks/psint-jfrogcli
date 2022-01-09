@@ -62,7 +62,8 @@ runs:
         jfrog rt ping 
         jfrog config show
         
-        jfrog rt atc
+        token=$(jfrog rt atc | jq '.access_token' )
+        echo $token
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
     #  shell: bash
