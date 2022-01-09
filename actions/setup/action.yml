@@ -28,9 +28,9 @@ runs:
         echo "PW ${{ env.ARTIFACTORY_PASSWORD }}"
         echo "URL ${{ env.ARTIFACTORY_URL }}"
         
-        jfrog rt ping 
-        
         # Configure JFrog Server
+        jfrog config add --artifactory-url=${{ env.ARTIFACTORY_URL }} --user=${{ env.ARTIFACTORY_USERNAME }} --password=${{ env.ARTIFACTORY_PASSWORD }}
+        jfrog rt ping 
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
     #  shell: bash
