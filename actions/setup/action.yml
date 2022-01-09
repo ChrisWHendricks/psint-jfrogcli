@@ -10,10 +10,10 @@ inputs:
   password: 
     description: 'url for artifactory instance'
     required: true
-#outputs:
-#  random-number:
-#    description: "Random number"
-#    value: ${{ steps.random-number-generator.outputs.random-id }}
+outputs:
+  jfrogToken:
+    description: "JFrog Access Token"
+    value: ${{ steps.ConfigureCli.outputs.jfrogToken }}
 runs:
   using: "composite"
   steps:
@@ -63,7 +63,8 @@ runs:
         jfrog config show
         
         token=$(jfrog rt atc | jq '.access_token' )
-        echo $token
+        echo "::set-output name=jfrogToken::$(echo $token)"
+         echo "PSINT_JFROG_TOKEN=$token" >> $GITHUB_ENV;     
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
     #  shell: bash
