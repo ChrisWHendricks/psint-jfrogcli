@@ -28,6 +28,7 @@ runs:
         echo "PW ${{ env.ARTIFACTORY_PASSWORD }}"
         echo "URL ${{ env.ARTIFACTORY_URL }}"
         
+        jfrog rt ping 
         
         # Configure JFrog Server
       
