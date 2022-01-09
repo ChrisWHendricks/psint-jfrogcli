@@ -53,12 +53,16 @@ runs:
         IFS=' ' read -ra my_array <<< "$jfrogversion"
         echo "Using JFrog Version ${my_array[2]}"
         
+        echo "Existing JFrog Servers"
+        echo "--------------------------------"
         jfrog config show       
         
         # Configure JFrog Server
         jfrog config add --artifactory-url=${{ env.PSINT_ARTIFACTORY_URL }} --user=${{ env.PSINT_ARTIFACTORY_USERNAME }} --password=${{ env.PSINT_ARTIFACTORY_PASSWORD }}
         jfrog rt ping 
-        jfrog config show 
+        jfrog config show
+        
+        jfrog rt atc
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
     #  shell: bash
