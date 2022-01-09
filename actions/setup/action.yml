@@ -22,9 +22,10 @@ runs:
   steps:
    - name: Setup JFrog CLI
      uses: jfrog/setup-jfrog-cli@v2
-  - name: saveInputs
-    shell: bash
-    run: |
+  
+   - name: saveInputs
+     shell: bash
+     run: |
       if [ -n "${{ inputs.url }}" ]; then
         echo "URL Provided"
       else
