@@ -1,15 +1,15 @@
 name: 'Setup jfrog cli for Artifactory'
 description: 'Download and configure JFrog CLI'
 inputs:
-  url: 
+  url:
     description: 'url for artifactory instance'
     required: true
     #default: '${{ env.ARTIFACTORY_URL }}'
-   user: 
+  user: 
     description: 'url for artifactory instance'
     required: true
     #default: '${{ env.ARTIFACTORY_USERNAME }}'
-   password: 
+  password: 
     description: 'url for artifactory instance'
     required: true
     #default: '${{ env.ARTIFACTORY_PASSWORD }}'
