@@ -45,6 +45,7 @@ runs:
         # Configure JFrog Server
         jfrog config add --artifactory-url=${{ env.ARTIFACTORY_URL }} --user=${{ env.ARTIFACTORY_USERNAME }} --password=${{ env.ARTIFACTORY_PASSWORD }}
         jfrog rt ping 
+        jfrog config show 
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
     #  shell: bash
