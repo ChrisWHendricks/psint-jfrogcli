@@ -4,15 +4,12 @@ inputs:
   url:
     description: 'url for artifactory instance'
     required: true
-    #default: '${{ env.ARTIFACTORY_URL }}'
   user: 
     description: 'url for artifactory instance'
     required: true
-    #default: '${{ env.ARTIFACTORY_USERNAME }}'
   password: 
     description: 'url for artifactory instance'
     required: true
-    #default: '${{ env.ARTIFACTORY_PASSWORD }}'
 #outputs:
 #  random-number:
 #    description: "Random number"
@@ -26,12 +23,25 @@ runs:
    - name: checkInputs
      shell: bash
      run: |
-      if [ -n "${{ inputs.url }}" ]; then
-        echo "URL Provided, setting ARTIFACTORY_URL Environment Variable"
+      if [ -n "${{ inputs.url }}" ]; then       
         echo "PSINT_ARTIFACTORY_URL=${{ inputs.url }}" >> $GITHUB_ENV;     
       else
          echo "URL NOT Provided, checking for previously set env variable"
          echo "PSINT_ARTIFACTORY_URL=${{ env.ARTIFACTORY_URL }}" >> $GITHUB_ENV;     
+      fi
+      
+      if [ -n "${{ inputs.user }}" ]; then        
+        echo "PSINT_ARTIFACTORY_USERNAME=${{ inputs.user }}" >> $GITHUB_ENV;     
+      else
+         echo "USER NOT Provided, checking for previously set env variable"
+         echo "PSINT_ARTIFACTORY_USERNAME=${{ env.ARTIFACTORY_USERNAME }}" >> $GITHUB_ENV;     
+      fi
+      
+      if [ -n "${{ inputs.password }}" ]; then        
+        echo "PSINT_ARTIFACTORY_PASSWORD=${{ inputs.password }}" >> $GITHUB_ENV;     
+      else
+         echo "Password NOT Provided, checking for previously set env variable"
+         echo "PSINT_ARTIFACTORY_PASSWORD=${{ env.ARTIFACTORY_PASSWORD }}" >> $GITHUB_ENV;     
       fi
      
    - id: ConfigureCli
