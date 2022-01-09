@@ -1,10 +1,18 @@
 name: 'Setup jfrog cli for Artifactory'
 description: 'Download and configure JFrog CLI'
-#inputs:
-#  who-to-greet:  # id of input
-#    description: 'Who to greet'
-#    required: true
-#    default: 'World'
+inputs:
+  url: 
+    description: 'url for artifactory instance'
+    required: true
+    default: ${{ env.ARTIFACTORY_URL }}
+   user: 
+    description: 'url for artifactory instance'
+    required: true
+    default: ${{ env.ARTIFACTORY_USERNAME }}
+   password: 
+    description: 'url for artifactory instance'
+    required: true
+    default: ${{ env.ARTIFACTORY_PASSWORD }}
 #outputs:
 #  random-number:
 #    description: "Random number"
@@ -24,12 +32,12 @@ runs:
         IFS=' ' read -ra my_array <<< "$jfrogversion"
         echo "Using JFrog Version ${my_array[2]}"
         
-        echo "USER ${{ env.ARTIFACTORY_USERNAME }}"
-        echo "PW ${{ env.ARTIFACTORY_PASSWORD }}"
-        echo "URL ${{ env.ARTIFACTORY_URL }}"
+        echo "USER ${{ inputs.user }}"
+        echo "PW ${{ inputs.password }}"
+        echo "URL ${{ inputs.url }}"
         
         # Configure JFrog Server
-        jfrog config add --artifactory-url=${{ env.ARTIFACTORY_URL }} --user=${{ env.ARTIFACTORY_USERNAME }} --password=${{ env.ARTIFACTORY_PASSWORD }}
+        jfrog config add --artifactory-url=${{ inputs.url }} --user=${{inputs.user }} --password=${{ inputs.password}}
         jfrog rt ping 
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
