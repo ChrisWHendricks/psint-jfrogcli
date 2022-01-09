@@ -40,7 +40,7 @@ runs:
         IFS=' ' read -ra my_array <<< "$jfrogversion"
         echo "Using JFrog Version ${my_array[2]}"
         
-       
+        jfrog config show       
         
         # Configure JFrog Server
         jfrog config add --artifactory-url=${{ env.ARTIFACTORY_URL }} --user=${{ env.ARTIFACTORY_USERNAME }} --password=${{ env.ARTIFACTORY_PASSWORD }}
