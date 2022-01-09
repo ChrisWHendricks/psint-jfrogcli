@@ -4,7 +4,7 @@ inputs:
   url:
     description: 'url for artifactory instance'
     required: true
-    default: '${{ env.ARTIFACTORY_URL }}'
+    #default: '${{ env.ARTIFACTORY_URL }}'
   user: 
     description: 'url for artifactory instance'
     required: true
@@ -22,6 +22,14 @@ runs:
   steps:
    - name: Setup JFrog CLI
      uses: jfrog/setup-jfrog-cli@v2
+  - name: saveInputs
+    shell: bash
+    run: |
+      if [ -n "${{ inputs.url }}" ]; then
+        echo "URL Provided"
+      else
+        echo "URL Not Provided"
+      fi
      
    - id: ConfigureCli
      name: Configure Jfrog Cli
