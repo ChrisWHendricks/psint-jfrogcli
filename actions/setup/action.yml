@@ -28,7 +28,10 @@ runs:
      run: |
       if [ -n "${{ inputs.url }}" ]; then
         echo "URL Provided, setting ARTIFACTORY_URL Environment Variable"
-        echo "ARTIFACTORY_URL=${{ inputs.url }}" >> $GITHUB_ENV;     
+        echo "PSINT_ARTIFACTORY_URL=${{ inputs.url }}" >> $GITHUB_ENV;     
+      else
+         echo "URL NOT Provided, checking for previously set env variable"
+         echo "PSINT_ARTIFACTORY_URL=${{ env.ARTIFACTORY_URL }}" >> $GITHUB_ENV;     
       fi
      
    - id: ConfigureCli
@@ -43,7 +46,7 @@ runs:
         jfrog config show       
         
         # Configure JFrog Server
-        jfrog config add --artifactory-url=${{ env.ARTIFACTORY_URL }} --user=${{ env.ARTIFACTORY_USERNAME }} --password=${{ env.ARTIFACTORY_PASSWORD }}
+        jfrog config add --artifactory-url=${{ env.PSINT_ARTIFACTORY_URL }} --user=${{ env.PSINT_ARTIFACTORY_USERNAME }} --password=${{ env.PSINT_ARTIFACTORY_PASSWORD }}
         jfrog rt ping 
         jfrog config show 
       
