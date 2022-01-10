@@ -20,10 +20,10 @@ runs:
     - id: download       
       run: |
       shell: bash
-        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${  inputs.remotePath }} ${{ inputs.destinationPath }}"
+        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }}"
         
         if [ -n "${{ inputs.limit }}" ]; then     
-         downloadCommand="${downloadCommand} --limit-${{ inputs.limit }}"
+         downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
         fi
         
         echo "$downloadCommand"
