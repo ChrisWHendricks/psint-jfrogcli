@@ -64,7 +64,7 @@ runs:
         
         token=$(jfrog rt atc | jq '.access_token' )
         echo "::set-output name=jfrogToken::$(echo $token)"
-         echo "PSINT_JFROG_TOKEN=$token" >> $GITHUB_ENV;     
+     
       
     #- run: echo Hello ${{ inputs.who-to-greet }}.
     #  shell: bash
