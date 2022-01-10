@@ -19,20 +19,17 @@ runs:
   steps:         
     - id: download       
       shell: bash
-      run: |
-     
-        repoName="${{ inputs.repoName }}"
-        echo "$repoName"
-        
-        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }}"
+      run: |     
+        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }} --flat"
         
         if [ -n "${{ inputs.limit }}" ]; then     
-        downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
+          downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
         fi
         
+        mkdir ${{ inputs.destinationPath }}
         echo "$downloadCommand"
         $downloadCommand
-        ls  ${{ inputs.destinationPath }}
+        ls  ${{ inputs.destinationPath }}/
         #jfrog rt dl ${{ inputs.repoName }}/${  inputs.remotePath }} ${{ inputs.destinationPath }} ${{ inputs.additionalArgs }}
         #--limit=1 --sort-by=created --sort-order=desc --flat --url=${{ env.ARTIFACTORY_URL }} --access-token=${{ env.JFROG_TOKEN }}
         
