@@ -24,14 +24,14 @@ runs:
         repoName = ${{ inputs.repoName }}
         echo $repoName
         
-        #downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }}"
+        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }}"
         
-        #if [ -n "${{ inputs.limit }}" ]; then     
-        ## downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
-        #fi
+        if [ -n "${{ inputs.limit }}" ]; then     
+        downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
+        fi
         
-        #echo "$downloadCommand"
-        #$downloadCommand
+        echo "$downloadCommand"
+        $downloadCommand
         
         #jfrog rt dl ${{ inputs.repoName }}/${  inputs.remotePath }} ${{ inputs.destinationPath }} ${{ inputs.additionalArgs }}
         #--limit=1 --sort-by=created --sort-order=desc --flat --url=${{ env.ARTIFACTORY_URL }} --access-token=${{ env.JFROG_TOKEN }}
