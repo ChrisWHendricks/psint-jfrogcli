@@ -13,6 +13,18 @@ inputs:
   limit:
     decription: "Maximum number of items to download"
     required: false
+  flatten:
+    decription: "Set to 'true' to flatten downloaded results to destination path and ignore soure directory hierarchy"
+    required: false    
+  sortBy:
+    decription: "Set to 'true' to flatten downloaded results to destination path and ignore soure directory hierarchy"
+    required: false
+  sortOrder:
+    decription: "The order by which fields in the 'sort-by' option should be sorted. Accepts 'asc' or 'desc'."
+    required: true
+    default: 'asc'
+ 
+ 
     
 runs:
   using: "composite"
@@ -20,10 +32,14 @@ runs:
     - id: download       
       shell: bash
       run: |     
-        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }} --flat"
+        downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }} --sort-by=created --sort-order=desc"
         
         if [ -n "${{ inputs.limit }}" ]; then     
           downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
+        fi
+        
+        if [ -n "${{ inputs.flatten }}" ]; then     
+          downloadCommand="${downloadCommand} --flat
         fi
         
         mkdir -p ${{ inputs.destinationPath }}
