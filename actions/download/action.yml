@@ -2,23 +2,21 @@ name: 'JFrog Cli for Artifactory'
 description: 'Runs various JFrog CLI Commands for artifactory'
 inputs: 
   repoName: 
-    description: Name or artifactory repo where tools are stored
+    description: "Name or artifactory repo where tools are stored"
     required: true
   remotePath:  
     description: 'Path in Artifactory repository to download'
     required: true
   destinationPath:
-    description: Local Path where file(s) will be downloaded
+    description: "Local Path where file(s) will be downloaded"
     required: true
   limit:
-    decription: "Maximum number of items to download
+    decription: "Maximum number of items to download"
     required: false
     
 runs:
   using: "composite"
-  steps:
-    
-          
+  steps:         
     - id: download       
       run: |
       shell: bash
