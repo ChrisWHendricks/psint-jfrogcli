@@ -32,7 +32,7 @@ runs:
         
         echo "$downloadCommand"
         $downloadCommand
-        
+        ls  ${{ inputs.destinationPath }}
         #jfrog rt dl ${{ inputs.repoName }}/${  inputs.remotePath }} ${{ inputs.destinationPath }} ${{ inputs.additionalArgs }}
         #--limit=1 --sort-by=created --sort-order=desc --flat --url=${{ env.ARTIFACTORY_URL }} --access-token=${{ env.JFROG_TOKEN }}
         
