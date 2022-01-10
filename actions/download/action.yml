@@ -21,7 +21,7 @@ runs:
       shell: bash
       run: |
      
-        repoName = ${{ inputs.repoName }}
+        repoName = "${{ inputs.repoName }}"
         echo "$repoName"
         
         downloadCommand="jfrog rt dl ${{ inputs.repoName }}/${{ inputs.remotePath }} ${{ inputs.destinationPath }}"
