@@ -18,8 +18,9 @@ runs:
   using: "composite"
   steps:         
     - id: download       
-      run: |
       shell: bash
+      run: |
+     
         repoName = ${{ inputs.repoName }}
         echo $repoName
         
