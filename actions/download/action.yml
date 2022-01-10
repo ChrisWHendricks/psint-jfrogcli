@@ -26,7 +26,7 @@ runs:
           downloadCommand="${downloadCommand} --limit=${{ inputs.limit }}"
         fi
         
-        mkdir ${{ inputs.destinationPath }}
+        mkdir -p ${{ inputs.destinationPath }}
         echo "$downloadCommand"
         $downloadCommand
         ls  ${{ inputs.destinationPath }}/
